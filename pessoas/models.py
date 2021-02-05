@@ -10,11 +10,12 @@ class Pessoa(models.Model):
     SEXO_CHOICES = (
       ('M', 'Masculino'),
       ('F', 'Feminino'),
+      ('O', 'Outro')
     )
     sexo = models.CharField(max_length=1, choices=SEXO_CHOICES, default='M')
     nome = models.CharField(max_length=255, null=False, blank=False)
     data_nascimento = models.DateField(null=False, blank=False)
-    cpf = models.CharField(max_length=15, null=False, blank=False)
+    cpf = models.CharField(max_length=15, unique=True, null=False, blank=False)
     foto = models.ImageField(upload_to='fotos_presos', null=False, blank=False)
     telefone = models.OneToOneField(Telefone, blank=True, null=True, on_delete=models.CASCADE)
 
